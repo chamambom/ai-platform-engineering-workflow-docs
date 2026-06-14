@@ -1,0 +1,13 @@
+remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-remote-theme
+
+title: AI-Enabled Engineering & Workflow Automation
+
+header_pages:
+  - index.md
+  - CodebaseAnalysis.md
+  - InfrastructureDelivery.md
+  - PlanningWorkflow.md
+  - IncidentManagement.md
+  - DocumentationDiscovery.md
