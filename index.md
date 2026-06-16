@@ -31,7 +31,7 @@ As we evolved as a team, each one of us adopted these AI tools to improve produc
 
 - I will look at AI with a cost, productivity, and practices lens.
 
-# AI-Enabled Engineering & Workflow Automation
+# AI-Enabled Engineering & Workflow Automation (Precursor to understanding Agentic AI - Best practices, )
 
 Improved delivery velocity by embedding AI-assisted workflows using GitHub Copilot, Kiro, and GitHub CLI across infrastructure delivery and operational support.
 
