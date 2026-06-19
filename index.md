@@ -7,33 +7,29 @@ nav_order: 1
 
 ## The Backstory
 
-10 years as an Infrastructure & Cloud engineer (2010–2020). Python, MongoDB, Linux, VMware, Cisco, Dell, AWS, Azure — the whole stack. Certifications collected: RHCE, Azure & AWS Solutions Architect. But I'd gotten comfortable. I wanted to reboot my curiosity and re-learn *how to learn*.
+It's already been 15 years and I've worked extensively as a Cloud Specialist (2010 – to date). Along the way, I've touched Python, MongoDB, Linux, VMware, Cisco, Dell, AWS, Azure — you name it — and validated my knowledge through certifications like RHCE, Azure & AWS Solutions Architect. But somewhere along the line, I got comfortable, and I realised I wanted to reset my curiosity and re-learn *how to learn*.
 
-## The MSc Bet
-
-Around Covid, I enrolled for an MSc. I already had Cloud experience, so I needed something that *complemented* it rather than overlapped. AI, Cybersecurity, or Cloud Computing degrees get outdated fast — industry moves too quick. So I picked **Data Engineering**. Mature field, solid tooling (Databricks, Azure Data Factory, AWS Redshift), and a natural on-ramp to AI.
+So around Covid, I decided to enrol for an MSc. I already had the Cloud experience, which meant I needed something that would *complement* what I knew rather than repeat it. In my mind, degrees in AI, Cybersecurity, or Cloud Computing get outdated too fast — industry moves quicker than any curriculum can keep up. That led me to **Data Engineering** — a mature field with solid tooling like Databricks, Azure Data Factory, and AWS Redshift — and more importantly, a natural stepping stone into AI.
 
 ![alt text](image.png)
 
-Having done my first degree in Computer Science, most courses were a refresher. Three areas grabbed me:
+Since my first degree was in Computer Science, most of the coursework felt like a refresher, but three areas genuinely grabbed my attention:
 
-- **Machine Learning Techniques** — traditional ML, deep learning, feature engineering, model tuning.
-- **Statistical Analysis** — regression, multivariate models, the math that underpins ML.
-- **Business Major** — this is where I caught the stock market bug.
+- **Machine Learning Techniques** — traditional ML, deep learning, feature engineering, and the mechanics of tuning a model.
+- **Statistical Analysis** — regression, multivariate models, and the math that makes ML tick.
+- **Business Major** — and this is where I caught the stock market bug.
 
 ## Enter AI
 
-The MSc in Big Data turned out to be the perfect foundation to *get* what AI was doing under the hood.
-
-AI stopped being a buzzword and started being a shift. As an IT professional, the question became: *where do I fit while the ground is moving?* The answer was simple — AI (like robots) still needs humans for end-to-end automation. My job wasn't to fear the future but to adapt my experience and workflows using AI.
+As it turned out, the MSc in Big Data gave me the perfect foundation to actually *get* what AI was doing under the hood. Then AI stopped being a buzzword and started being a real shift, and as an IT professional, the question became: *where do I fit while the ground is moving beneath me?* What I discovered was simple — AI, much like robots, still needs humans for end-to-end automation. So my job wasn't to worry about the future but to figure out how to adapt my experience and workflows using AI.
 
 ## AI at Work
 
-The org I joined embraced AI tools early — Kiro, GitHub Copilot, GitHub Copilot Review. One thing stayed constant: **to build anything, you need context and knowledge**. A human in the loop is still required for security, verification, and keeping systems from falling apart.
+The org I joined embraced AI tools early — Kiro, GitHub Copilot, GitHub Copilot Review — and one thing stayed constant throughout: **to build anything, you need context and knowledge**. A human in the loop is still required for security, verification, and all the stuff that keeps systems from falling apart.
 
-Without context, you're just burning tokens on problems a reusable workflow could solve. IaC & automation have been DevOps pillars for years. Every day in an org = more context about your systems, processes, and domain.
+What we realised over time was that without context, you're just burning tokens on problems a reusable workflow could solve. Think about it — IaC and automation have been DevOps pillars for years, and every single day you spend in an org is another day you're gaining context about your systems, your team processes, and your domain.
 
-As we evolved as a team, each of us adopted AI tools to boost productivity in different ways. This repo documents my journey — capturing the detail that helps someone out there understand the tradeoffs.
+As we evolved as a team, each of us adopted these AI tools to boost productivity in our own way. This repo is where I document that journey — capturing the detail that helps someone out there understand the tradeoffs.
 
 ## My Lens
 
