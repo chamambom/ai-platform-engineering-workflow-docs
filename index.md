@@ -44,9 +44,9 @@ As we evolved as a team, each of us adopted these AI tools to boost productivity
 
 I look at AI through three angles: 
 
-**cost**, 
-**productivity**, and 
-**practices**
+- **cost**, 
+- **productivity**, and 
+- **practices**
 
 ---
 
