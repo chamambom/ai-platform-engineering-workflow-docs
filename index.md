@@ -24,6 +24,7 @@ Improved delivery velocity by embedding AI-assisted workflows using GitHub Copil
 - **GitHub CLI** — PR creation, branch management
 - **MCP Tools** — Jira, Confluence, and Terraform repo context
 
+---
 
 ## The Backstory - My AI adoption Journey
 
@@ -32,7 +33,7 @@ My career has spanned 15 years (2010 – to date) for which most part, it was in
 But somewhere along the line, I got comfortable, and I realised I needed a reset - *learn how to learn*.
 
 ## MSc Bet (2019 - 2020) 
-[CUT Programme Details](https://www.cut.ac.zw/welcome/program/programme-details/18500tech222)
+[MSc Big Data Analytics(MSCDA) - Chinhoyi University of Technology (CUT): Programme Details](https://www.cut.ac.zw/welcome/program/programme-details/18500tech222)
 
 So around Covid, I decided to enrol for an MSc (One sure way of re-engaging a curious mind). Considering the Cloud experience I already had, I needed something that would *complement* what I knew rather than repeat it. I considered a postgrad in AI, Cybersecurity, or Cloud Computing but given that the industry is already moving fast in these spaces, I knew it was easier for the content to get outdated too fast — industry moves quicker than any curriculum can keep up. That led me to **Data Engineering** — a mature field that already had solid tooling for on-premise solutions and had evolved for cloud based solutions - Databricks, Azure Data Factory, and AWS Redshift — and more importantly, a natural stepping stone into AI.
 
@@ -67,5 +68,3 @@ I look at AI through three angles:
 - **cost**, 
 - **productivity**, and 
 - **practices**
-
----
