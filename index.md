@@ -11,13 +11,12 @@ My career has spanned 15 years (2010 – to date) for which most part, it was in
 
 But somewhere along the line, I got comfortable, and I realised I needed a reset - *learn how to learn*.
 
-## MSc Bet (2019 - 2020)
+## MSc Bet (2019 - 2020) - https://www.cut.ac.zw/welcome/program/programme-details/18500tech222
 
 So around Covid, I decided to enrol for an MSc (One sure way of re-engaging a curious mind). Considering the Cloud experience I already had, I needed something that would *complement* what I knew rather than repeat it. I considered a postgrad in AI, Cybersecurity, or Cloud Computing but given that the industry is already moving fast in these spaces, I knew it was easier for the content to get outdated too fast — industry moves quicker than any curriculum can keep up. That led me to **Data Engineering** — a mature field that already had solid tooling for on-premise solutions and had evolved for cloud based solutions - Databricks, Azure Data Factory, and AWS Redshift — and more importantly, a natural stepping stone into AI.
 
-https://www.cut.ac.zw/welcome/program/programme-details/18500tech222
 
-My first degree was in Computer Science and 3/4 of the coursework felt like a refresher, and my focus was mostly around these 3:
+My first degree was in Computer Science and 1/2 of the coursework felt like a refresher, and my focus was mostly around these 3:
 
 - **Machine Learning Techniques** — Traditional ML, deep learning, feature engineering, and the model mechanics.
 - **Statistical and Econometric Modelling** — Regression, multivariate models, and the math behind ML algorithms.
