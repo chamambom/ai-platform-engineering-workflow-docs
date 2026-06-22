@@ -26,47 +26,31 @@ Improved delivery velocity by embedding AI-assisted workflows using GitHub Copil
 
 ---
 
-## The Backstory - My AI adoption Journey
+## The Backstory — My AI Adoption Journey
 
-My career has spanned 15 years (2010 – to date) for which most part, it was in the Managed Services Provider (MSP, ISP, CSP) space as a Cloud Specialist. While in that space, I worked on the most interesting projects using various technologies to solve business challenges - Linux, VMware, Cisco, Dell, AWS, Azure — you name it — and validated my knowledge through certifications like RHCE, Azure & AWS Solutions Architect.
+AI is just a tool. Used poorly, it's remarkably good at helping you:
 
-Somewhere along the line, I realised I needed a reset - get myself into a new space of mind *learn how to learn*. 
+- Overengineer simple tasks — building an agent when a reusable workflow would do.
+- Rewrite things nobody asked for — crafting custom dashboards when free ones already exist.
+- Sound confident while being completely wrong.
 
-## MSc Bet (2019 - 2020) 
-[MSc Big Data Analytics (MSCDA) - Chinhoyi University of Technology (CUT): Programme Details](https://www.cut.ac.zw/welcome/program/programme-details/18500tech222)
+I've had the privilege of using AI tools daily — Kiro, GitHub Copilot, GitHub Copilot Review. I've used them to understand codebases, resolve incidents, plan infrastructure work, and yes — occasionally waste time using AI where it wasn't needed.
 
-Around Covid, I decided to enrol for an MSc. I needed something that would *complement* what I already had rather than a compeltely new thing. I considered a postgrad in AI, Cybersecurity, or Cloud Computing but given that the industry is already moving fast in these spaces, I knew it was easier for the content to get outdated too fast — industry moves quicker than any curriculum can keep up. That led me to 
+Here's what actually matters:
 
-- **Data Engineering** — a mature field that already had solid tooling for on-premise solutions and had evolved for cloud based solutions - Databricks, Azure Data Factory, and AWS Redshift — and more importantly, a natural stepping stone into AI.
+- **Domain knowledge** — AI amplifies what you already know. In my case, that's Cloud Engineering.
+- **Business context** — Knowing how to apply your skills to the business is the same with AI. Context is everything.
 
+The takeaway? You're better placed to solve a problem with AI when you already understand the problem space. AI doesn't replace the thinking — it accelerates it.
 
-My first degree was in Computer Science and 1/2 of the coursework felt like a refresher, and my focus was mostly around these 3:
-
-- **Machine Learning Techniques** — Traditional ML, deep learning, feature engineering, and the model mechanics.
-- **Statistical and Econometric Modelling** — Regression, multivariate models, and the math behind ML algorithms.
-- **Big Data Analytics** — Explored tools, pipeline design, data types, Algorithms, Data lakes etc.
-
-## Enter AI (2022 to early 2023) - Gen AI to be specific
-
-As it turned out, the MSc in Big Data gave me a perfect foundation to not be surprised by the progress made in the field of AI. AI stopped being a buzzword, and as an IT professional, the question became: *where do I fit while the ground is moving beneath me?* What I discovered was simple — AI, much like robots, still needs humans for end-to-end automation. So my job wasn't to worry about the future but to figure out how to adapt my experience and workflows using AI.
-
-## AI at Work - 2024 - todate.
-
-The org I joined embraced AI tools early — Kiro, GitHub Copilot, GitHub Copilot Review — and one thing stayed constant throughout: **to build anything, you need context and knowledge**. A human in the loop is still required for security, verification, and all the stuff that keeps systems from falling apart.
-
-What we realised over time was that without context, you're just burning tokens on problems a reusable workflow could solve. What is context you ask?
-
-- **Domain knowledge**
-- **Business Processes**
-
-In Summary - you are better placed to solve a problem with AI when you have an understanding of the context of the field or problem you are trying to solve.
-
-As we evolved as a team, each of us adopted these AI tools to boost productivity in our own way. This repo is where I document that journey — capturing the detail that helps someone out there understand the tradeoffs.
+As our team evolved, each of us adopted these tools to boost productivity in our own way. This repo documents that journey — capturing the detail that helps someone out there understand the tradeoffs.
 
 ## My Lens
 
-I look at AI through three angles: 
+As I use AI day to day, these are the questions I keep coming back to:
 
-- **cost**, 
-- **productivity**, and 
-- **practices**
+- **Cost** — What's the best way to track the cost of AI-assisted work?
+- **Productivity** — How do we actually measure it?
+- **Practices** — What does "best practice" look like when the tooling changes every month?
+- **Security** — I connect AI to AWS, GitHub, and Terraform via MCP. How do I do that safely?
+- **Scale** — When building an agent for other teams, what matters? Observability, auth, guardrails.
