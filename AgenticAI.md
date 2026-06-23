@@ -5,6 +5,17 @@ nav_order: 2
 
 # Agentic AI
 
+Building an AI agent requires balancing autonomy, capability, and guardrails. 
+
+Key considerations include 
+
+- Core architecture (planning, memory, and tools), 
+- Reliability (defining strict boundaries to prevent hallucinations), 
+- Observability (logging steps for auditing), and 
+- Choosing the right level of autonomy (human-in-the-loop vs. fully autonomous).
+
+For a clear visual breakdown of how modern AI agents use reasoning, acting, and observing to function:
+
 Most enterprises now have at least one AI agent doing something useful — and honestly, that's the easy part. The hard part is what comes next: getting these agents to work reliably across teams, systems, and processes without falling over when the load goes up.
 
 From what I've seen, the real challenge isn't building the agent — it's the infrastructure that sits beneath it. You need solid connectivity to your systems, proper governance and control, and orchestration that actually holds together as you scale. Without those foundations, you're just building something that works in a demo but crumbles in production.
