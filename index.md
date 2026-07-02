@@ -66,6 +66,7 @@ Improved delivery velocity by embedding AI-assisted workflows using GitHub Copil
 | [Incident Management](IncidentManagement.md) | AI-assisted incident analysis, validation, and remediation |
 | [Documentation & Knowledge Discovery](DocumentationDiscovery.md) | Retrieve operational knowledge to reduce onboarding time |
 | [Agentic AI ](AgenticAI.md) | My approach towards building an AI agent. |
+| [Token Efficiency & Cost Practices](TokenEfficiency.md) | Best practices and commands to preserve tokens and reduce costs |
 
 ## Tools
 
@@ -77,13 +78,15 @@ Improved delivery velocity by embedding AI-assisted workflows using GitHub Copil
 ---
 ## Patterns or best practices to save token costs
 
-
+See [Token Efficiency & Cost Practices](TokenEfficiency.md) for the full guide.
 
 ### Kiro
-/usage - to check the credits used. 
+/usage - to check the credits used.
+/effort low - for cheaper exploration and analysis.
+/compact - to free context space mid-session.
+/knowledge add - to index codebases once and query across sessions.
 
-
-### Github Copilot  
+### Github Copilot
 
 
 
