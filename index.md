@@ -78,6 +78,20 @@ Improved delivery velocity by embedding AI-assisted workflows using GitHub Copil
 ---
 ## Patterns or best practices to save token costs
 
-See [Token Efficiency & Cost Practices](TokenEfficiency.md) for the full guide.
+See [Token Efficiency & Cost Practices — Kiro](TokenEfficiency.md) and [Token Efficiency — GitHub Copilot](TokenEfficiencyCopilot.md) for the full guides.
+
+### Kiro
+/usage - to check the credits used.
+/effort low - for cheaper exploration and analysis.
+/compact - to free context space mid-session.
+/knowledge add - to index codebases once and query across sessions.
+
+### Github Copilot
+/plan - to spec features before implementing (plan with reasoning model, implement with cheaper model).
+/compact - to summarise and shrink long sessions.
+/chronicle cost-tips - to learn from your own token usage patterns.
+Auto model selection - routes to the most efficient model (+ 10% discount).
+copilot-instructions.md - persistent project context to stop repeating yourself.
+
 
 ---
