@@ -80,14 +80,4 @@ Improved delivery velocity by embedding AI-assisted workflows using GitHub Copil
 
 See [Token Efficiency & Cost Practices](TokenEfficiency.md) for the full guide.
 
-### Kiro
-/usage - to check the credits used.
-/effort low - for cheaper exploration and analysis.
-/compact - to free context space mid-session.
-/knowledge add - to index codebases once and query across sessions.
-
-### Github Copilot
-
-
-
 ---
