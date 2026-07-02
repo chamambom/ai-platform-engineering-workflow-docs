@@ -50,6 +50,8 @@ As I use AI day to day, these are the questions I keep asking myself:
 - **Security** - I connect AI to AWS, GitHub, and Terraform via MCP. How do I do that safely?
 - **Scale** - When building an agent for other teams, what matters? Observability, auth, guardrails.
 
+--- 
+
 # AI-Enabled Engineering & Workflow Automation in the Workplace
 
 Improved delivery velocity by embedding AI-assisted workflows using GitHub Copilot, Kiro, and GitHub CLI across infrastructure delivery and operational support.
@@ -73,5 +75,16 @@ Improved delivery velocity by embedding AI-assisted workflows using GitHub Copil
 - **MCP Tools** - Jira, Confluence, and Terraform repo context
 
 ---
+## Patterns or best practices to save token costs
 
 
+
+### Kiro
+/usage - to check the credits used. 
+
+
+### Github Copilot  
+
+
+
+---
