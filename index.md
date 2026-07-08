@@ -67,6 +67,7 @@ Improved delivery velocity by embedding AI-assisted workflows using GitHub Copil
 | [Documentation & Knowledge Discovery](DocumentationDiscovery.md) | Retrieve operational knowledge to reduce onboarding time |
 | [Agentic AI ](AgenticAI.md) | My approach towards building an AI agent. |
 | [Token Efficiency & Cost Practices](TokenEfficiency.md) | Best practices and commands to preserve tokens and reduce costs |
+| [Real Example Workflows](RealExampleWorkflows.md) | Practical tips and screenshots from real AI-assisted workflow sessions |
 
 ## Tools
 
