@@ -119,6 +119,30 @@ A SPEC isn't overhead — it's the checkpoint that stops AI from building the wr
 
 ---
 
+## Session Management
+
+Each Jira ticket or project gets its own folder and Kiro session. This keeps context clean — one session per problem space, no bleed between unrelated work.
+
+When a task grows beyond what a single session can handle, I break it out into a separate Kiro window. I solve the sub-problem in that dedicated session, capture the output as a SPEC document, and feed it back into the original ticket session as structured context. This way, complex work gets decomposed without losing coherence in the main thread.
+
+In practice:
+
+```
+┌─────────────────────┐       ┌─────────────────────┐
+│  Main Session       │       │  Breakout Session   │
+│  (Jira ticket)      │       │  (Sub-problem)      │
+│                     │       │                     │
+│  "This piece is     │──────▶│  Solve it here      │
+│   too big..."       │       │  Output → SPEC doc  │
+│                     │◀──────│                     │
+│  Feed SPEC back in  │       └─────────────────────┘
+└─────────────────────┘
+```
+
+This pattern keeps each session focused, preserves token efficiency, and ensures that the AI always has the right context for the task at hand.
+
+---
+
 ## MCP Server Configuration
 
 MCP servers extend Kiro's capabilities by connecting it to external tools and services. Here's my setup:
@@ -166,6 +190,8 @@ MCP servers extend Kiro's capabilities by connecting it to external tools and se
 ```
 
 Config lives at `~/.kiro/settings/mcp.json`.
+
+This is a **global configuration** — not per-project or per-session. Every Kiro session loads the same MCP servers automatically, regardless of which directory you're working in. This ensures that Jira, Confluence, AWS, Terraform, and CloudWatch are always available without manual setup each time.
 
 ---
 
