@@ -1,6 +1,6 @@
 ---
-title: My Environment
-nav_order: 2
+title: My AI Environment
+nav_order: 1
 ---
 
 # My AI-Enabled Engineering Workflow
@@ -19,14 +19,93 @@ A typical day looks like this:
 
 ## The AI Layer
 
-I run **Kiro CLI** as my primary AI coding assistant inside WSL on Windows 11. Kiro connects to multiple backend services through MCP (Model Context Protocol) servers — giving it live access to Jira, Confluence, AWS, Terraform docs, and CloudWatch.
+I use two AI coding assistants daily:
 
-This isn't a demo setup. It's what I use daily to:
-- Investigate incidents using CloudWatch logs and metrics
-- Search and read Jira tickets without leaving the terminal
-- Look up Terraform provider docs while writing modules
-- Query AWS APIs across accounts for troubleshooting
-- Draft and update Confluence documentation
+- **Kiro CLI** — my primary agent, running inside WSL on Windows 11. Connects to Jira, Confluence, AWS, Terraform docs, and CloudWatch through MCP servers.
+- **GitHub Copilot** — code completion, inline suggestions, and automated PR review via GitHub Copilot Review.
+
+Both tools share context through **Kiro SPECS documents** — structured specification files that describe what needs to be built, the tasks involved, and the constraints. SPECS work as a bridge between Kiro and GitHub Copilot, so either tool can pick up where the other left off.
+
+---
+
+## The Workflow: From Ticket to Merged PR
+
+Here's how a typical infrastructure ticket flows through my AI-enabled workflow:
+
+### Example: "Enable VPC Flow Logs for all production accounts"
+
+```
+┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
+│  1. Jira │────▶│  2. SPEC │────▶│3. Implement────▶│ 4. PR    │────▶│ 5. Merge │
+│  Ticket  │     │  & Plan  │     │  Changes │     │  Review  │     │  & CI/CD │
+└──────────┘     └──────────┘     └──────────┘     └──────────┘     └──────────┘
+```
+
+**Step 1 — Read the ticket**
+
+Kiro reads the Jira ticket directly through the Atlassian MCP. I don't copy-paste anything — it pulls the full context including acceptance criteria, linked issues, and comments.
+
+```
+> "Read SD-57556 and summarise what's needed"
+```
+
+Kiro fetches the ticket, understands the scope, and asks clarifying questions if the requirements are ambiguous.
+
+**Step 2 — Generate a SPEC**
+
+I ask Kiro to produce a SPEC document (or a `/plan` in GitHub Copilot terms). The SPEC contains:
+- Problem statement (from the ticket)
+- Proposed approach
+- Tasks broken into implementation steps
+- Constraints and considerations
+
+At this stage, Kiro analyses the local codebase — I give it the repo path and it maps the existing Terraform module structure, identifies where changes belong, and understands naming conventions. **It doesn't make changes yet.** This is pure analysis and planning.
+
+```
+> "Generate a spec for this ticket. The repo is at ~/repos/terraform-aws-platform"
+```
+
+The SPEC becomes a shared artefact that both Kiro and GitHub Copilot can reference.
+
+**Step 3 — Implement**
+
+Once I'm happy with the SPEC, I tell Kiro to implement. It:
+- Creates a feature branch
+- Writes the Terraform code following existing patterns in the repo
+- Uses the AWS MCP to validate resource configurations against live state
+- References Terraform provider docs through the Terraform MCP for correct syntax
+
+All of this runs under **my credentials** — Kiro is acting as me. The git commits, the AWS API calls, the branch creation — it's all my identity.
+
+```
+> "Implement the spec. Create a feature branch and push when done."
+```
+
+**Step 4 — PR Review**
+
+Kiro pushes the feature branch and creates a draft PR. GitHub Copilot Review automatically runs on the PR — checking for:
+- Security issues
+- Code style and best practices
+- Potential bugs or misconfigurations
+
+This gives me a first-pass automated review before a human even looks at it.
+
+**Step 5 — Human approval and merge**
+
+A team member reviews the PR (with Copilot's annotations as context), approves, and merges. The code flows into our existing CI/CD pipeline — `terraform plan` on PR, `terraform apply` on merge to main.
+
+---
+
+## Why SPECS Matter
+
+SPECS are the glue between tools:
+
+- **Kiro** generates them from Jira context + codebase analysis
+- **GitHub Copilot** uses them as implementation guides during code completion
+- **Humans** review them before implementation starts — catching design issues early
+- **Future you** reads them to understand why something was built a certain way
+
+A SPEC isn't overhead — it's the checkpoint that stops AI from building the wrong thing fast.
 
 ---
 
@@ -144,4 +223,4 @@ Each MCP server exposes a set of **tools** (functions the AI can call). When you
 - **Persistent Atlassian sessions** — OAuth tokens can go stale; occasional `/mcp logout` + `/mcp auth` needed
 - **Run Terraform plan/apply** — the Terraform MCP is docs-only, not an execution engine
 
-Despite these limitations, this setup has genuinely changed how I work. The ability to stay in one terminal and pull context from Jira, AWS, Confluence, and Terraform docs — without context-switching between browser tabs — is the real productivity win.
+Despite these limitations, this setup has genuinely changed how I work. The ability to stay in one terminal — read a Jira ticket, generate a spec, implement against a local repo, push a branch, and get an automated review — without context-switching between browser tabs is the real productivity win.

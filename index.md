@@ -1,6 +1,6 @@
 ---
 title: Home
-nav_order: 1
+nav_order: 0
 ---
 
 ## The Backstory - My AI Adoption Journey
@@ -60,7 +60,7 @@ Improved delivery velocity by embedding AI-assisted workflows using GitHub Copil
 
 | Workflow | Description |
 |----------|-------------|
-| [My Environment](MyEnvironment.md) | My AI-enabled engineering workflow setup, MCP configuration, and tooling |
+| [My AI Environment](MyEnvironment.md) | My AI-enabled engineering workflow setup, MCP configuration, and tooling |
 | [Codebase & Architecture Analysis](CodebaseAnalysis.md) | Analyse codebases to identify boundaries and support decoupling decisions |
 | [Infrastructure Delivery](InfrastructureDelivery.md) | AI-assisted SDLC from Jira task through to PR merge |
 | [Planning & Kanban Decomposition](PlanningWorkflow.md) | Identify dependencies and split tasks for delivery clarity |
