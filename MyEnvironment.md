@@ -9,16 +9,15 @@ nav_order: 1
 
 I'm a Senior Cloud Platform Engineer working within an organisation that manages 40+ AWS accounts across multiple product teams, each operating dev/test/prod environments. We're a team of three that owns and operates the AWS platform — our role is to enable product teams to run their workloads in a secure, governed, and self-service manner. We function as the **Cloud Center of Excellence**.
 
-### Current Projects
+### Workstreams
 
-- **Network Remediation & Segmentation** — Establishing a shared networking model that product teams can adopt consistently
-- **Governance** — AWS Organisations, OU structure, SCPs, and Control Tower implementation
-- **Identity Remediation** — Migrating from manual access workflows to Terraform-managed AWS IAM Identity Center permission sets integrated with Entra ID
-- **Legacy Migration** — Migrating legacy Linux workloads from managed datacentres into AWS
-- **Mono-repo Migration** — Breaking apart mono-repos into Terramate stacks to reduce repository sprawl and improve blast radius isolation
-- **Platform Security** — Security posture and compliance across the estate
-- **Observability Strategy** — Establishing an observability approach for workloads with Jira integration for alerting and incident tracking
-- **GitHub & Kiro Management** — Managing teams in AWS, GitHub Copilot licensing, and access governance
+- **Network Remediation & Segmentation** — Establishing a shared networking model for consistent adoption across product teams
+- **Governance & Identity** — AWS Organisations, OU structure, SCPs, Control Tower, and migrating manual access workflows to Terraform-managed IAM Identity Center permission sets with Entra ID
+- **Platform Security & Observability** — Security posture across the estate, plus an observability strategy for workloads with Jira-integrated alerting and incident tracking
+- **IaC & Repository Strategy** — Breaking apart mono-repos into Terramate stacks to reduce sprawl and improve blast radius isolation
+- **Migration & Modernisation** — Migrating legacy Linux workloads from managed datacentres into AWS with a clear roadmap for modernisation post-migration
+- **Product Team Enablement** — Assisting product teams to refactor legacy applications toward cloud-native services where feasible
+- **Tooling & Licensing** — GitHub team management, Copilot licensing governance, and Kiro access across AWS
 
 ### Daily Tooling
 
