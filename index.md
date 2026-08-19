@@ -44,11 +44,11 @@ As our team evolved, each of us adopted these tools to boost productivity in our
 
 As I use AI day to day, these are the questions I keep asking myself:
 
-- **Cost** - What's the best way to track the cost of AI-assisted work?
+- **Cost** - What's the best way to track the cost of AI-assisted work when you're charged per token across multiple tools?
 - **Productivity** - How do we actually measure it?
 - **Practices** - What does "best practice" look like when the tooling changes every month?
-- **Security** - I connect AI to AWS, GitHub, and Terraform via MCP. How do I do that safely?
-- **Scale** - When building an agent for other teams, what matters? Observability, auth, guardrails.
+- **Security** - I connect AI to AWS, GitHub, and Terraform via [MCP](MyEnvironment.md). How do I do that safely?
+- **Scale** - When building an agent that other platform teams can use, what matters? Observability, auth, guardrails.
 
 --- 
 
