@@ -7,9 +7,20 @@ nav_order: 1
 
 ## The Day Job
 
-I'm a Cloud Platform Engineer working inside an organisation that supports 40+ AWS accounts across product teams running dev/test/prod environments. Our platform team operates as the **Cloud Center of Excellence** — we set the guardrails, build the shared infrastructure, and enable product teams to ship safely.
+I'm a Senior Cloud Platform Engineer working within an organisation that manages 40+ AWS accounts across multiple product teams, each operating dev/test/prod environments. We're a team of three that owns and operates the AWS platform — our role is to enable product teams to run their workloads in a secure, governed, and self-service manner. We function as the **Cloud Center of Excellence**.
 
-A typical day looks like this:
+### Current Projects
+
+- **Network Remediation & Segmentation** — Establishing a shared networking model that product teams can adopt consistently
+- **Governance** — AWS Organisations, OU structure, SCPs, and Control Tower implementation
+- **Identity Remediation** — Migrating from manual access workflows to Terraform-managed AWS IAM Identity Center permission sets integrated with Entra ID
+- **Legacy Migration** — Migrating legacy Linux workloads from managed datacentres into AWS
+- **Mono-repo Migration** — Breaking apart mono-repos into Terramate stacks to reduce repository sprawl and improve blast radius isolation
+- **Platform Security** — Security posture and compliance across the estate
+- **Observability Strategy** — Establishing an observability approach for workloads with Jira integration for alerting and incident tracking
+- **GitHub & Kiro Management** — Managing teams in AWS, GitHub Copilot licensing, and access governance
+
+### Daily Tooling
 
 - **Jira** — Tickets and projects. We run Kanban with Epics, Tasks, and Sub-tasks to track platform work.
 - **Confluence** — Documentation hub. Runbooks, architecture decisions, onboarding guides.
