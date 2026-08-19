@@ -66,7 +66,7 @@ Improved delivery velocity by embedding AI-assisted workflows using GitHub Copil
 | [Planning & Kanban Decomposition](PlanningWorkflow.md) | Identify dependencies and split tasks for delivery clarity |
 | [Incident Management](IncidentManagement.md) | AI-assisted incident analysis, validation, and remediation |
 | [Documentation & Knowledge Discovery](DocumentationDiscovery.md) | Retrieve operational knowledge to reduce onboarding time |
-| [Agentic AI](AgenticAI.md) | My approach towards building an AI agent |
+| [Agentic AI vs AI Workflows](AgenticAI.md) | Understanding the difference and when to use each |
 | [Token Efficiency & Cost Practices](TokenEfficiency.md) | Best practices and commands to preserve tokens and reduce costs |
 | [Token Efficiency - GitHub Copilot](TokenEfficiencyCopilot.md) | GitHub Copilot specific token saving patterns |
 | [Real Example Workflows](RealExampleWorkflows.md) | Practical tips and screenshots from real AI-assisted workflow sessions |
