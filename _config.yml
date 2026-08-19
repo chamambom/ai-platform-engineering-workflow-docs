@@ -6,6 +6,7 @@ title: AI-Enabled Engineering & Workflow Automation
 
 header_pages:
   - index.md
+  - MyEnvironment.md
   - CodebaseAnalysis.md
   - InfrastructureDelivery.md
   - PlanningWorkflow.md
