@@ -61,13 +61,14 @@ Improved delivery velocity by embedding AI-assisted workflows using GitHub Copil
 | Workflow | Description |
 |----------|-------------|
 | [My AI Environment](MyEnvironment.md) | My AI-enabled engineering workflow setup, MCP configuration, and tooling |
-| [Codebase & Architecture Analysis](CodebaseAnalysis.md) | Analyse codebases to identify boundaries and support decoupling decisions |
 | [Infrastructure Delivery](InfrastructureDelivery.md) | AI-assisted SDLC from Jira task through to PR merge |
+| [Codebase & Architecture Analysis](CodebaseAnalysis.md) | Analyse codebases to identify boundaries and support decoupling decisions |
 | [Planning & Kanban Decomposition](PlanningWorkflow.md) | Identify dependencies and split tasks for delivery clarity |
 | [Incident Management](IncidentManagement.md) | AI-assisted incident analysis, validation, and remediation |
 | [Documentation & Knowledge Discovery](DocumentationDiscovery.md) | Retrieve operational knowledge to reduce onboarding time |
-| [Agentic AI ](AgenticAI.md) | My approach towards building an AI agent. |
+| [Agentic AI](AgenticAI.md) | My approach towards building an AI agent |
 | [Token Efficiency & Cost Practices](TokenEfficiency.md) | Best practices and commands to preserve tokens and reduce costs |
+| [Token Efficiency - GitHub Copilot](TokenEfficiencyCopilot.md) | GitHub Copilot specific token saving patterns |
 | [Real Example Workflows](RealExampleWorkflows.md) | Practical tips and screenshots from real AI-assisted workflow sessions |
 
 ## Tools
