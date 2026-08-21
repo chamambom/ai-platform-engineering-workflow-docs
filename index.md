@@ -67,8 +67,8 @@ Improved delivery velocity by embedding AI-assisted workflows using GitHub Copil
 | [Incident Management](IncidentManagement.md) | AI-assisted incident analysis, validation, and remediation |
 | [Documentation & Knowledge Discovery](DocumentationDiscovery.md) | Retrieve operational knowledge to reduce onboarding time |
 | [Agentic AI vs AI Workflows](AgenticAI.md) | Understanding the difference and when to use each |
-| [Token Efficiency & Cost Practices](TokenEfficiency.md) | Best practices and commands to preserve tokens and reduce costs |
-| [Token Efficiency - GitHub Copilot](TokenEfficiencyCopilot.md) | GitHub Copilot specific token saving patterns |
+| [Token Efficiency — Kiro](TokenEfficiency.md) | Best practices and commands to preserve tokens and reduce costs |
+| [Token Efficiency — Copilot](TokenEfficiencyCopilot.md) | GitHub Copilot specific token saving patterns |
 | [Real Example Workflows](RealExampleWorkflows.md) | Practical tips and screenshots from real AI-assisted workflow sessions |
 
 ## Tools
@@ -81,7 +81,7 @@ Improved delivery velocity by embedding AI-assisted workflows using GitHub Copil
 ---
 ## Patterns or best practices to save token costs
 
-See [Token Efficiency & Cost Practices — Kiro](TokenEfficiency.md) and [Token Efficiency — GitHub Copilot](TokenEfficiencyCopilot.md) for the full guides.
+See [Token Efficiency — Kiro](TokenEfficiency.md) and [Token Efficiency — Copilot](TokenEfficiencyCopilot.md) for the full guides.
 
 ### Kiro
 

@@ -1,9 +1,9 @@
 ---
-title: Token Efficiency & Cost Practices
+title: Token Efficiency — Kiro
 nav_order: 8
 ---
 
-# Token Efficiency & Cost Practices
+# Token Efficiency — Kiro
 
 Strategies and commands for preserving token usage, maintaining better context, and reducing costs when using Kiro CLI — particularly for codebase analysis and spec-driven feature design.
 

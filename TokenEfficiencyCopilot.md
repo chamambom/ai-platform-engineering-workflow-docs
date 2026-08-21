@@ -1,9 +1,9 @@
 ---
-title: Token Efficiency - GitHub Copilot
+title: Token Efficiency — Copilot
 nav_order: 9
 ---
 
-# Token Efficiency & Cost Practices — GitHub Copilot
+# Token Efficiency — Copilot
 
 Strategies and commands for preserving tokens, maintaining better context, and reducing AI credit costs when using GitHub Copilot — particularly for codebase analysis and feature planning with Plan mode.
 

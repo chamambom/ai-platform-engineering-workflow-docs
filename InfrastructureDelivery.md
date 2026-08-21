@@ -22,3 +22,7 @@ End-to-end AI-assisted infrastructure delivery from Jira task through to merged 
 - **Jira** — Task requirements, acceptance criteria, linked tickets
 - **Confluence** — Architecture decisions, network diagrams, naming conventions
 - **Terraform repo** — Existing modules, state structure, variable patterns
+
+## Detailed Example
+
+For a full worked example of this workflow (from reading a Jira ticket through to merged PR with Copilot Review), see [My AI Environment — The Workflow: From Ticket to Merged PR](MyEnvironment.md#the-workflow-from-ticket-to-merged-pr).
