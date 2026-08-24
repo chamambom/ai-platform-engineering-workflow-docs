@@ -43,6 +43,42 @@ This is the space I'm paying close attention to — how do we move from "I have 
 
 ## My Attempt at Building One — Considerations
 
-- Goal of the agent
+These are the areas I want to think through before building, running, and deploying an agent in production. Grouped for now — I'll expand each later.
+
+### Design & Scope
+
+- Goal of the agent — what problem, what "done" looks like
+- Target Audience — who uses it, their skill level, their trust threshold
+- Scope boundaries — what it explicitly will *not* do
+
+### Security & Access
+
 - Guardrails — Authentication, Security
-- Target Audience
+- Identity & credentials — whose permissions it runs as, least privilege
+- Secrets management — API keys, tokens, rotation
+- Data handling — what it reads, stores, and sends; PII/sensitive data
+
+### Reliability & Control
+
+- Human-in-the-loop — approval gates for high-risk actions
+- Determinism & guardrails — tests, linters, validation before acting
+- Error handling & recovery — what happens when it fails mid-task
+- Rollback strategy — undoing bad actions
+
+### Observability
+
+- Logging & audit trail — every decision and action recorded
+- Monitoring & alerting — health, failures, drift
+- Cost tracking — token/credit consumption per run
+
+### Operations
+
+- Deployment model — where it runs (local, CI, hosted)
+- Versioning & change management — updating prompts/tools safely
+- Scalability — concurrent runs, rate limits, resource use
+- Maintenance — who owns it, how it's kept current
+
+### Evaluation
+
+- Success metrics — how you measure if it's actually working
+- Testing & evaluation — regression testing prompts and behaviour
