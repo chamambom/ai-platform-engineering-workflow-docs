@@ -82,3 +82,42 @@ These are the areas I want to think through before building, running, and deploy
 
 - Success metrics — how you measure if it's actually working
 - Testing & evaluation — regression testing prompts and behaviour
+
+---
+
+## Tech Stack — The Choices
+
+The tooling landscape changes monthly, so I'm framing these as decisions rather than a fixed list. Given my context (AWS platform engineering), the AWS-native options are called out where they fit.
+
+### Agent Framework / Orchestration
+
+- The core framework — LangGraph, CrewAI, AWS Strands, Bedrock Agents, or roll-your-own
+
+### Model / Inference
+
+- LLM provider — Bedrock, OpenAI, Anthropic; hosted vs. self-hosted
+- Model routing — cheaper model for execution, reasoning model for planning
+
+### Tool Integration
+
+- MCP servers — how the agent connects to external systems
+- Custom tools/functions — org-specific actions
+
+### Memory & State
+
+- Conversation/session state — how context persists
+- Knowledge base / RAG — vector store, retrieval
+
+### Infrastructure & Deployment
+
+- Runtime — Lambda, ECS/Fargate, EKS, or local
+- IaC — Terraform (fits my existing workflow)
+
+### Observability & Cost
+
+- Tracing / eval tooling — LangSmith, Langfuse, CloudWatch
+- Cost tracking — token metering per run
+
+### Guardrails
+
+- Input/output validation — Bedrock Guardrails or a custom policy layer
