@@ -181,7 +181,7 @@ MCP servers extend Kiro's capabilities by connecting it to external tools and se
       ],
       "env": {
         "AWS_PROFILE": "<AWS_PROFILE_NAME>",
-        "AWS_REGION": "ap-southeast-2",
+        "AWS_REGION": "<TARGET_REGION>",
         "FASTMCP_LOG_LEVEL": "ERROR"
       }
     }
@@ -260,3 +260,110 @@ Each MCP server exposes a set of **tools** (functions the AI can call). When you
 - **Run Terraform plan/apply** — the Terraform MCP is docs-only, not an execution engine
 
 Despite these limitations, this setup has genuinely changed how I work. The ability to stay in one terminal — read a Jira ticket, generate a spec, implement against a local repo, push a branch, and get an automated review — without context-switching between browser tabs is the real productivity win.
+
+---
+
+## Working Across Many Accounts with Granted
+
+The MCP limitations above (one profile per session, no cross-account queries in a single shot) are a real constraint when you operate a large AWS estate. Outside of MCP, though, the terminal itself can still work across every account at once. I use [Granted](https://granted.dev/) to manage SSO profiles for all my AWS accounts, and I've centralised a small helper so any shell — or Kiro session — can log in and run commands across the whole estate.
+
+The idea: keep the profile list and the login logic in **one** place, source it everywhere, and never hand-maintain a list of accounts again.
+
+### Layout
+
+```
+~/.local/share/myorg/
+├── myorg-profiles.sh   # helper library (functions + generator)
+└── profiles.txt        # generated list of accounts (never hand-edited)
+```
+
+The helper auto-loads in every new shell/Kiro session via a small block added to `~/.bashrc`:
+
+```bash
+# --- AWS infra helpers ---
+if [ -f "$HOME/.local/share/myorg/myorg-profiles.sh" ]; then
+    . "$HOME/.local/share/myorg/myorg-profiles.sh"
+fi
+```
+
+This is additive — it only defines functions and runs nothing on startup. To load it into your current shell without opening a new one: `source ~/.bashrc`.
+
+### How to use it in any session
+
+```bash
+# Log into all accounts (starts the Granted SSO session)
+myorg_login
+
+# Print the profile list
+myorg_profiles
+
+# Run any AWS command across every account
+myorg_for_each aws sts get-caller-identity --query Account --output text
+
+# Regenerate the list after accounts are added/removed in Granted
+myorg_generate_profiles
+```
+
+Or from a standalone script:
+
+```bash
+source ~/.local/share/myorg/myorg-profiles.sh
+myorg_login
+for p in $(myorg_profiles); do
+    AWS_PROFILE="$p" aws ec2 describe-vpcs --query 'Vpcs[].VpcId' --output text
+done
+```
+
+### Why this pattern works
+
+- **Self-updating** — `myorg_profiles` generates the list from your Granted config on first use, so it never goes stale as accounts are added or removed.
+- **Login built in** — `myorg_login` wraps the Granted SSO command so you don't have to remember the flags:
+
+  ```bash
+  granted sso login --sso-region <SSO_REGION> --sso-start-url <SSO_START_URL>
+  ```
+
+- **Overridable** — environment variables (e.g. `MYORG_GRANTED_CONFIG`, `MYORG_EXCLUDE`, `MYORG_SSO_START_URL`) let you point it at a different Granted registry or SSO endpoint without editing the script.
+
+### The generator (reference)
+
+The core of the helper is a generator that reads the Granted config and emits a clean profile list, plus a few convenience functions. Values like the SSO region and start URL are read from environment variables so nothing environment-specific is baked into the script:
+
+```bash
+# Configuration (override via environment)
+MYORG_DIR="${MYORG_DIR:-$HOME/.local/share/myorg}"
+MYORG_GRANTED_CONFIG="${MYORG_GRANTED_CONFIG:-$HOME/granted/<registry>/config}"
+MYORG_PROFILES_FILE="${MYORG_PROFILES_FILE:-$MYORG_DIR/profiles.txt}"
+MYORG_SSO_REGION="${MYORG_SSO_REGION:-<SSO_REGION>}"
+MYORG_SSO_START_URL="${MYORG_SSO_START_URL:-<SSO_START_URL>}"
+
+# Regenerate profiles.txt from the Granted config
+myorg_generate_profiles() {
+    grep '^\[profile ' "$MYORG_GRANTED_CONFIG" \
+        | sed -E 's/\[profile (.*)\]/\1/' \
+        | sort > "$MYORG_PROFILES_FILE"
+}
+
+# Print the profile list (skipping comments/blanks)
+myorg_profiles() {
+    grep -vE '^\s*(#|$)' "$MYORG_PROFILES_FILE"
+}
+
+# Ensure an active Granted SSO session
+myorg_login() {
+    granted sso login \
+        --sso-region "$MYORG_SSO_REGION" \
+        --sso-start-url "$MYORG_SSO_START_URL"
+}
+
+# Run a command for every account profile
+myorg_for_each() {
+    local profile
+    while IFS= read -r profile; do
+        echo "=== $profile ===" >&2
+        AWS_PROFILE="$profile" "$@"
+    done < <(myorg_profiles)
+}
+```
+
+This turns the "one profile per session" MCP limitation into a non-issue for scripted, cross-account work: MCP stays single-account for interactive AI tasks, while the CLI helper handles fan-out across the whole estate.
