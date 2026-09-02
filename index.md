@@ -61,6 +61,7 @@ Improved delivery velocity by embedding AI-assisted workflows using GitHub Copil
 | Workflow | Description |
 |----------|-------------|
 | [My AI Environment](MyEnvironment.md) | My AI-enabled engineering workflow setup, MCP configuration, and tooling |
+| [Agent Context — Steering vs Skills](AgentContext.md) | Making the agent aware of your tools, and the token tradeoff between steering files and skills |
 | [Infrastructure Delivery](InfrastructureDelivery.md) | AI-assisted SDLC from Jira task through to PR merge |
 | [Codebase & Architecture Analysis](CodebaseAnalysis.md) | Analyse codebases to identify boundaries and support decoupling decisions |
 | [Planning & Kanban Decomposition](PlanningWorkflow.md) | Identify dependencies and split tasks for delivery clarity |
