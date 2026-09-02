@@ -1,3 +1,8 @@
+---
+title: Real Example Workflows
+nav_order: 11
+---
+
 Tip number 1 - Human in the loop for verification
 
 ![alt text](image-1.png)

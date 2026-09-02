@@ -6,6 +6,7 @@ title: AI-Enabled Engineering & Workflow Automation
 
 header_pages:
   - index.md
+  - AgenticAI.md
   - MyEnvironment.md
   - AgentContext.md
   - CodebaseAnalysis.md
@@ -13,7 +14,6 @@ header_pages:
   - PlanningWorkflow.md
   - IncidentManagement.md
   - DocumentationDiscovery.md
-  - AgenticAI.md
   - TokenEfficiency.md
   - TokenEfficiencyCopilot.md
   - RealExampleWorkflows.md

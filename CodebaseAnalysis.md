@@ -1,6 +1,6 @@
 ---
 title: Codebase & Architecture Analysis
-nav_order: 2
+nav_order: 4
 ---
 
 # Codebase & Architecture Analysis Workflow

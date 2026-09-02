@@ -1,6 +1,6 @@
 ---
 title: My AI Environment
-nav_order: 1
+nav_order: 2
 ---
 
 # My AI-Enabled Engineering Workflow

@@ -1,6 +1,6 @@
 ---
 title: Infrastructure Delivery
-nav_order: 3
+nav_order: 5
 ---
 
 # Infrastructure Delivery Workflow (AI-Assisted SDLC)

@@ -1,6 +1,6 @@
 ---
 title: Token Efficiency — Copilot
-nav_order: 9
+nav_order: 10
 ---
 
 # Token Efficiency — Copilot

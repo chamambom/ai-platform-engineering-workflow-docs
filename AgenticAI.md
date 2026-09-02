@@ -1,6 +1,6 @@
 ---
 title: Agentic AI vs AI Workflows
-nav_order: 2
+nav_order: 1
 ---
 
 # Agentic AI vs AI Workflows

@@ -1,6 +1,6 @@
 ---
 title: Planning & Kanban Decomposition
-nav_order: 4
+nav_order: 6
 ---
 
 # Planning & Kanban Workflow Decomposition
