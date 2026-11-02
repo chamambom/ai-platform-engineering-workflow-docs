@@ -11,6 +11,10 @@ put that knowledge somewhere Kiro loads automatically.
 
 There are two mechanisms. The choice comes down to **token cost vs. availability**.
 
+> For how these fit into the wider setup — the global `~/.kiro/` folder, the skills I
+> actually use, and where they live — see
+> [Setting up my WSL environment](MyEnvironment.md#setting-up-my-wsl-environment).
+
 ## Steering files
 
 Markdown files in `~/.kiro/steering/` (global) or `.kiro/steering/` (workspace). Loaded

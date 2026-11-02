@@ -38,6 +38,96 @@ Both tools share context through **Kiro SPECS documents** — structured specifi
 
 ---
 
+## Setting up my WSL environment
+
+Everything below runs inside **WSL (Ubuntu) on Windows 11**. WSL gives me a native Linux shell where Kiro, the AWS CLI, Granted, Terraform, and Docker all behave the way they would on a Linux workstation — while I keep Windows for everything else.
+
+### Installing Kiro
+
+Kiro CLI is installed once inside WSL and then available from any directory:
+
+```bash
+# Install the Kiro CLI (one-time, inside WSL)
+curl -fsSL <KIRO_INSTALL_URL> | bash
+
+# Confirm it's on PATH
+kiro --version
+
+# Authenticate (opens a browser consent flow on first run)
+kiro login
+```
+
+After install, I start a session simply by running `kiro` from whichever folder holds the work I'm doing. There's no per-project install step — the binary is global, and so is its configuration.
+
+### One global `~/.kiro` folder for everything
+
+The key to a consistent experience across every project is that Kiro reads its configuration from a **single global folder in my home directory**, not from each repo. Whatever directory I launch a session from, the same skills, MCP servers, and steering are loaded.
+
+```
+~/.kiro/
+├── settings/
+│   └── mcp.json          # MCP servers (Jira/Confluence, AWS, Terraform, CloudWatch)
+├── skills/               # reusable, on-demand capabilities
+│   ├── aws-multi-account/
+│   │   └── SKILL.md
+│   └── jira-formatting/
+│       └── SKILL.md
+└── steering/             # rules loaded on every turn (kept lean)
+    └── *.md
+```
+
+Because this lives in `~/.kiro/` and not in a repo, I get the same tools whether I'm in an infrastructure repo, a scratch folder, or a ticket folder. Install once, use everywhere. (The MCP side of this is covered in [MCP Server Configuration](#mcp-server-configuration) below — the same "global, not per-project" principle applies to both skills and MCP servers.)
+
+### A `jira-issues` folder, one subfolder per ticket
+
+I keep a dedicated working area for ticket-driven work. Each piece of work gets its own folder, **prefixed with the Jira ticket number followed by a short description**:
+
+```
+~/jira-issues/
+├── SD-57556-enable-vpc-flow-logs/
+├── PLA-396-kiro-usage-reporting/
+└── SD-62022-acm-acme-cert-renewal/
+```
+
+Launching a Kiro session from inside one of these folders gives me the clean "one session per problem space" model described in [Session Management](#session-management): the folder name alone tells both me and the agent which ticket we're on, and any SPECs or notes for that ticket live right beside it. The ticket-number prefix keeps the folders sorted and trivially greppable, and it makes the link back to Jira unambiguous.
+
+### My troubleshooting approach: context first, fix second
+
+The habit that makes the biggest difference isn't any single tool — it's **gathering context before touching anything**. A ticket is a starting point, not the full picture. My default loop:
+
+1. **Read the ticket.** Kiro pulls the full Jira issue through the Atlassian MCP — description, acceptance criteria, linked issues, and comments.
+2. **If the ticket is vague, go find context.** Kiro reads the relevant **Confluence documentation via the Atlassian MCP** to understand the history, the architecture decisions, and any prior incidents around the thing I'm about to change. This is where a one-line ticket turns into a real case: *what is this system, why does it exist, what's changed before.*
+3. **Check whether the change is actually in code.** Because we manage our infrastructure with **Terraform/Terramate**, Kiro reads the relevant repo to confirm whether the resource in question is defined in code or was created out-of-band. This single check avoids the classic trap of "fixing" something in the console that Terraform will revert on the next apply — or worse, drifting state.
+4. **Build the case, then break it into tasks.** With the ticket, the documentation, and the code all in context, Kiro produces a SPEC: problem statement, approach, and the tasks to get there.
+
+> The point is that **context matters more than just solving the ticket**. Looking the information up in the places where more context lives — Confluence for the "why", the Terraform repo for the "what's really deployed" — produces a fix that's correct *and* durable, rather than one that closes the ticket but causes drift or misses the actual root cause.
+
+### The skills and tools I lean on
+
+These live in `~/.kiro/skills/` and load **on demand** — their metadata is always visible to the agent, but the full body only loads when a task matches. (The token tradeoff behind that behaviour is explained in [Steering vs Skills](#steering-vs-skills-in-my-setup) below, and in detail on the [Agent Context — Steering vs Skills](AgentContext.md) page.)
+
+- **`aws-multi-account`** — runs AWS CLI commands across *all* accounts via the Granted-based helper. The AWS MCP is one profile per session, so when a task fans out across the whole estate, this skill is the way to do it. See [Working Across Many Accounts with Granted](#working-across-many-accounts-with-granted) for the helper itself.
+- **`jira-formatting`** — when writing to Jira (comments, descriptions, status updates), this skill makes the agent use Jira's rich display features — panels, status lozenges, tables, headings, code marks — so updates are clear and meaningful instead of a wall of plain text.
+
+Both are reusable building blocks: they encode "how we do a recurring thing here" once, so I don't re-explain it every session. Nothing account-specific is baked into them — profiles come from Granted, and endpoints/paths are read from environment variables or placeholders.
+
+### Steering vs Skills in my setup
+
+A session only acts on what's in its **context**. A helper sourced in `~/.bashrc` is available to the *shell*, but the agent won't know it exists unless that knowledge is somewhere Kiro loads automatically. There are two mechanisms, and the choice is about **token cost vs. availability**:
+
+| | Steering file | Skill |
+|---|---|---|
+| Location | `~/.kiro/steering/*.md` | `~/.kiro/skills/<name>/SKILL.md` |
+| Loaded | Full content, **every turn** | Metadata always; body **on demand** |
+| Idle token cost | Whole file, every turn | Just the name + description line |
+| Best for | Rules that shape *every* reply | Occasional reference / how-to |
+
+**Rule of thumb:** if it must influence *every* response (coding standards, PR conventions), use a lean steering file. If it's "knowledge to reach for when a specific task comes up" (like the multi-account helper), use a skill. This is exactly why `aws-multi-account` and `jira-formatting` are skills, not steering — I don't pay for them on turns where they're irrelevant.
+
+> For the full explanation — including how the skill *description* acts as the trigger, and a worked example — see [Agent Context — Steering vs Skills](AgentContext.md).
+
+---
+
 ## The Workflow: From Ticket to Merged PR
 
 Here's how a typical infrastructure ticket flows through my AI-enabled workflow:
