@@ -301,9 +301,9 @@ This is a **global configuration** — not per-project or per-session. Every Kir
 | | |
 |---|---|
 | **What it does** | Execute any of the 15,000+ AWS API operations, run sandboxed Python/boto3 scripts, search and read AWS documentation |
-| **Auth** | IAM SigV4 via a local proxy (`mcp-proxy-for-aws`) that bridges your IAM credentials to MCP's OAuth 2.1 |
-| **Limitation** | Locked to one AWS profile per session. With 40+ accounts managed via Granted, you need to assume the right profile before starting Kiro. No dynamic profile switching mid-session |
-| **Tip** | The MCP service endpoint is always `us-east-1` (or `eu-central-1`) regardless of which region you're targeting. The `--region` flag controls where your API calls go, not where the MCP service lives |
+| **Auth** | IAM SigV4 via a local proxy (`mcp-proxy-for-aws`) that bridges **your** IAM credentials to MCP's OAuth 2.1. Every call runs as you, with your permissions — no shared/service identity |
+| **Limitation** | Only reaches profiles declared at startup. The proxy supports multiple profiles (`--profile a b c`) with per-call switching via the `aws_profile` parameter, but you must list them up front — it can't reach an undeclared account. Declaring all 50+ accounts at once crashed the proxy on startup (credential resolution for every profile happens up front), so keep the set small and relevant |
+| **Tip** | For a few related accounts, declare them all and switch per call. For true all-estate fan-out, drop to the Granted `for_each` helper instead. The MCP service endpoint is always `us-east-1` (or `eu-central-1`) regardless of target region — the `--region` flag controls where your API calls go, not where the MCP service lives |
 
 ### Terraform
 
@@ -344,10 +344,12 @@ Each MCP server exposes a set of **tools** (functions the AI can call). When you
 
 ## What This Setup Can't Do (Yet)
 
-- **Switch AWS profiles mid-session** — you're locked to one account per Kiro session
-- **Cross-account queries in one shot** — need to restart with a different profile
-- **Persistent Atlassian sessions** — OAuth tokens can go stale; occasional `/mcp logout` + `/mcp auth` needed
+- **Switch to *any* account dynamically mid-session** — the AWS MCP proxy *does* support per-call profile switching via the `aws_profile` tool parameter, but only across the profiles you **declare at startup** (`--profile a b c ...`). It can't reach an account you didn't list when the session began. In practice I keep the config to a small, relevant set: when I tried to pre-declare all 50+ accounts at once, the proxy fell over on startup (it resolves credentials for every declared profile up front, which is a lot of SSO token lookups to do at once). For true all-estate fan-out, the Granted helper below is still the right tool.
+- **Cross-account queries across the *whole* estate in one shot** — the multi-profile proxy covers the handful of accounts you declared, not all 50+. Fanning out across everything is a job for the Granted `for_each` helper, not the MCP.
+- **Persistent Atlassian sessions** — OAuth tokens can go stale; occasional `/mcp logout` + `/mcp auth` needed. (The config still uses the `/v1/mcp` endpoint, which is on a deprecation path — expect this to need revisiting.)
 - **Run Terraform plan/apply** — the Terraform MCP is docs-only, not an execution engine
+
+> **Whose credentials does the AWS MCP use?** Mine. The proxy authenticates with the AWS profiles I pass it (`--profile ...` / `AWS_PROFILE`), which are my Granted/SSO profiles resolving to my IAM Identity Center identity. Every call is signed with **SigV4 using my local credentials**, so the MCP acts **as me** with exactly my permissions — never a shared or service identity. This is the same "Kiro is acting as me" principle that applies to the git commits and API calls in the workflow above.
 
 Despite these limitations, this setup has genuinely changed how I work. The ability to stay in one terminal — read a Jira ticket, generate a spec, implement against a local repo, push a branch, and get an automated review — without context-switching between browser tabs is the real productivity win.
 
@@ -355,7 +357,7 @@ Despite these limitations, this setup has genuinely changed how I work. The abil
 
 ## Working Across Many Accounts with Granted
 
-The MCP limitations above (one profile per session, no cross-account queries in a single shot) are a real constraint when you operate a large AWS estate. Outside of MCP, though, the terminal itself can still work across every account at once. I use [Granted](https://granted.dev/) to manage SSO profiles for all my AWS accounts, and I've centralised a small helper so any shell — or Kiro session — can log in and run commands across the whole estate.
+The MCP limitations above (only the profiles you declare at startup are reachable, and declaring the whole estate isn't practical) are a real constraint when you operate a large AWS estate. Outside of MCP, though, the terminal itself can still work across every account at once. I use [Granted](https://granted.dev/) to manage SSO profiles for all my AWS accounts, and I've centralised a small helper so any shell — or Kiro session — can log in and run commands across the whole estate.
 
 The idea: keep the profile list and the login logic in **one** place, source it everywhere, and never hand-maintain a list of accounts again.
 
