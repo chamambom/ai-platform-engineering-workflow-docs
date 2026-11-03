@@ -302,7 +302,7 @@ This is a **global configuration** — not per-project or per-session. Every Kir
 |---|---|
 | **What it does** | Execute any of the 15,000+ AWS API operations, run sandboxed Python/boto3 scripts, search and read AWS documentation |
 | **Auth** | IAM SigV4 via a local proxy (`mcp-proxy-for-aws`) that bridges **your** IAM credentials to MCP's OAuth 2.1. Every call runs as you, with your permissions — no shared/service identity |
-| **Limitation** | Only reaches profiles declared at startup. The proxy supports multiple profiles (`--profile a b c`) with per-call switching via the `aws_profile` parameter, but you must list them up front — it can't reach an undeclared account. Declaring all 50+ accounts at once crashed the proxy on startup (credential resolution for every profile happens up front), so keep the set small and relevant |
+| **Limitation** | Only reaches profiles declared at startup. The proxy supports multiple profiles (`--profile a b c`) with per-call switching via the `aws_profile` parameter, but you must list them up front — it can't reach an undeclared account. Declaring all 50+ accounts at once failed to start (root cause not investigated), so keep the set small and relevant |
 | **Tip** | For a few related accounts, declare them all and switch per call. For true all-estate fan-out, drop to the Granted `for_each` helper instead. The MCP service endpoint is always `us-east-1` (or `eu-central-1`) regardless of target region — the `--region` flag controls where your API calls go, not where the MCP service lives |
 
 ### Terraform
@@ -344,7 +344,7 @@ Each MCP server exposes a set of **tools** (functions the AI can call). When you
 
 ## What This Setup Can't Do (Yet)
 
-- **Switch to *any* account dynamically mid-session** — the AWS MCP proxy *does* support per-call profile switching via the `aws_profile` tool parameter, but only across the profiles you **declare at startup** (`--profile a b c ...`). It can't reach an account you didn't list when the session began. In practice I keep the config to a small, relevant set: when I tried to pre-declare all 50+ accounts at once, the proxy fell over on startup (it resolves credentials for every declared profile up front, which is a lot of SSO token lookups to do at once). For true all-estate fan-out, the Granted helper below is still the right tool.
+- **Switch to *any* account dynamically mid-session** — the AWS MCP proxy *does* support per-call profile switching via the `aws_profile` tool parameter, but only across the profiles you **declare at startup** (`--profile a b c ...`). It can't reach an account you didn't list when the session began. In practice I keep the config to a small, relevant set: when I tried to pre-declare all 50+ accounts at once, the proxy failed to start. I haven't dug into the root cause — the practical takeaway is that a large declared set isn't viable, so for all-estate work I use the Granted helper below.
 - **Cross-account queries across the *whole* estate in one shot** — the multi-profile proxy covers the handful of accounts you declared, not all 50+. Fanning out across everything is a job for the Granted `for_each` helper, not the MCP.
 - **Persistent Atlassian sessions** — OAuth tokens can go stale; occasional `/mcp logout` + `/mcp auth` needed. (The config still uses the `/v1/mcp` endpoint, which is on a deprecation path — expect this to need revisiting.)
 - **Run Terraform plan/apply** — the Terraform MCP is docs-only, not an execution engine
@@ -360,6 +360,20 @@ Despite these limitations, this setup has genuinely changed how I work. The abil
 The MCP limitations above (only the profiles you declare at startup are reachable, and declaring the whole estate isn't practical) are a real constraint when you operate a large AWS estate. Outside of MCP, though, the terminal itself can still work across every account at once. I use [Granted](https://granted.dev/) to manage SSO profiles for all my AWS accounts, and I've centralised a small helper so any shell — or Kiro session — can log in and run commands across the whole estate.
 
 The idea: keep the profile list and the login logic in **one** place, source it everywhere, and never hand-maintain a list of accounts again.
+
+### Why keep the helper if the MCP does multiple profiles?
+
+A reasonable question, now that the AWS MCP proxy supports multiple declared profiles. They solve different problems:
+
+| | AWS MCP (multi-profile) | Granted `for_each` helper |
+|---|---|---|
+| Best at | Interactive, agent-driven work on a **few** related accounts | Running one command across **all** accounts in a single pass |
+| Account set | Declared at startup; can't reach an undeclared account | Generated from the Granted config, so it tracks whatever profiles exist |
+| Large estate | Declaring all 50+ at once failed to start for me | Designed for estate-wide fan-out |
+| Runs in | Kiro session only | Any shell, script, or CI job |
+| Pattern | Switch the active profile per call | Same command against every account, results collected |
+
+In short: the MCP is for *"work in these specific accounts with the agent"*; the helper is for *"answer a question across the whole estate."* The proxy's multi-profile support reduces how often I need the helper for small multi-account tasks, but it doesn't replace it for estate-wide work.
 
 ### Layout
 
